@@ -12,4 +12,6 @@ class ProductController extends Controller
 
         return view('products', compact('products'));
     }
+
+    // TODO: Create a store function to store the product request in the database, add a validation
 }

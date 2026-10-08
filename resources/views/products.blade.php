@@ -8,10 +8,6 @@
             <h1 class="mt-1 text-2xl font-semibold tracking-tight text-stone-900 sm:text-3xl">Products</h1>
             <p class="mt-2 text-sm text-stone-500">Keep track of the items available in your store.</p>
         </div>
-
-        <button type="button" class="inline-flex items-center gap-2 rounded-lg bg-stone-800 px-3.5 py-2.5 text-sm font-medium text-stone-50 shadow-sm transition hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2">
-            Add product
-        </button>
     </header>
 
     <section class="mt-7" aria-labelledby="product-list-heading">
@@ -24,11 +20,18 @@
                     </div>
                 </div>
 
-                <div class="relative mt-5 max-w-md">
-                    <label for="product-search" class="sr-only">Search products</label>
-                    <input id="product-search" type="search" placeholder="Search products" class="block w-full rounded-lg border border-stone-300 bg-white py-2.5 pr-3 pl-9 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                <div class="mt-5 flex items-end justify-between gap-4">
+                    <div class="relative max-w-md flex-1">
+                        <label for="product-search" class="sr-only">Search products</label>
+                        <input id="product-search" type="search" placeholder="Search products" class="block w-full rounded-lg border border-stone-300 bg-white py-2.5 pr-3 pl-9 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                    </div>
+                    // TODO: select the button to show the modal when clicked
+                    <button type="button" class="inline-flex shrink-0 items-center gap-2 rounded-lg bg-stone-800 px-3.5 py-2.5 text-sm font-medium text-stone-50 shadow-sm transition hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2">
+                        Add product
+                    </button>
                 </div>
             </div>
+
 
             <div class="overflow-x-auto">
                 <table class="min-w-[760px] w-full text-left text-sm">
@@ -69,5 +72,9 @@
             </div>
         </div>
     </section>
+
+    <div class="modal" hidden>
+        @include('modal')
+    </div>
 
 @endsection

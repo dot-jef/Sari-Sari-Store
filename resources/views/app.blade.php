@@ -21,14 +21,11 @@
             </div>
 
             <nav class="mt-6 flex gap-2 overflow-x-auto pb-1 lg:flex-col lg:gap-1 lg:overflow-visible" aria-label="Primary navigation">
-                <a href="/dashboard" aria-current="page" class="inline-flex shrink-0 items-center gap-3 rounded-lg bg-stone-200 px-3 py-2.5 text-sm font-medium text-stone-900">
+                <a href="{{ route('dashboard.page') }}" aria-current="page" class="inline-flex shrink-0 items-center gap-3 rounded-lg bg-stone-200 px-3 py-2.5 text-sm font-medium text-stone-900">
                     Dashboard
                 </a>
-                <a href="/products" class="inline-flex shrink-0 items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-stone-600 transition hover:bg-stone-100 hover:text-stone-900">
+                <a href="/{{ route('products.page') }}" class="inline-flex shrink-0 items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-stone-600 transition hover:bg-stone-100 hover:text-stone-900">
                     Products
-                </a>
-                <a href="#" class="inline-flex shrink-0 items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-stone-600 transition hover:bg-stone-100 hover:text-stone-900">
-                    Orders
                 </a>
                 <a href="#" class="inline-flex shrink-0 items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-stone-600 transition hover:bg-stone-100 hover:text-stone-900">
                     Notifications
