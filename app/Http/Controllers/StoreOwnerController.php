@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 
 class StoreOwnerController extends Controller
 {
-    public function index() {
+    public function goToDashboard() {
         return view("dashboard");
     }
+
 }
+
