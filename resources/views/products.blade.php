@@ -25,8 +25,7 @@
                         <label for="product-search" class="sr-only">Search products</label>
                         <input id="product-search" type="search" placeholder="Search products" class="block w-full rounded-lg border border-stone-300 bg-white py-2.5 pr-3 pl-9 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
                     </div>
-                    // TODO: select the button to show the modal when clicked
-                    <button type="button" class="inline-flex shrink-0 items-center gap-2 rounded-lg bg-stone-800 px-3.5 py-2.5 text-sm font-medium text-stone-50 shadow-sm transition hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2">
+                    <button type="button" id="add-product-btn" class="inline-flex shrink-0 items-center gap-2 rounded-lg bg-stone-800 px-3.5 py-2.5 text-sm font-medium text-stone-50 shadow-sm transition hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2">
                         Add product
                     </button>
                 </div>
@@ -48,7 +47,7 @@
                     </thead>
                     <tbody class="divide-y divide-stone-100 text-stone-600">
                         @foreach ($products as $product)
-                            <tr class="transition hover:bg-stone-50/70">
+                            <tr data-id="{{ $product->id }}" class="transition hover:bg-stone-50/70">
                                 <td class="whitespace-nowrap px-5 py-4 font-medium text-stone-800 sm:px-6">{{ $product->product_name }}</td>
                                 <td class="whitespace-nowrap px-5 py-4">{{ $product->category }}</td>
                                 <td class="whitespace-nowrap px-5 py-4 tabular-nums">{{ $product->quantity }}</td>
