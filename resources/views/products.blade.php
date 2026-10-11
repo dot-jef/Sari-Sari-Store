@@ -9,7 +9,9 @@
             <p class="mt-2 text-sm text-stone-500">Keep track of the items available in your store.</p>
         </div>
     </header>
-
+    @if (session('success'))
+        <div class="text-green-600">{{ session('success') }}</div>
+    @endif
     <section class="mt-7" aria-labelledby="product-list-heading">
         <div class="rounded-xl border border-stone-200 bg-white shadow-sm">
             <div class="border-b border-stone-100 px-5 py-5 sm:px-6">
@@ -31,9 +33,39 @@
                 </div>
             </div>
 
+            @include('modal')
 
             <div class="overflow-x-auto">
-                @livewire('product-manager')
+                <table class="min-w-[760px] w-full text-left text-sm">
+                    <caption class="sr-only">Product inventory list</caption>
+                    <thead class="border-b border-stone-200 bg-stone-50 text-xs uppercase tracking-wide text-stone-500">
+                        <tr>
+                            <th scope="col" class="whitespace-nowrap px-5 py-3.5 font-medium sm:px-6">Product name</th>
+                            <th scope="col" class="whitespace-nowrap px-5 py-3.5 font-medium">Category</th>
+                            <th scope="col" class="whitespace-nowrap px-5 py-3.5 font-medium">Quantity</th>
+                            <th scope="col" class="whitespace-nowrap px-5 py-3.5 font-medium">Selling price</th>
+                            <th scope="col" class="whitespace-nowrap px-5 py-3.5 font-medium">Unit</th>
+                            <th scope="col" class="whitespace-nowrap px-5 py-3.5 text-right font-medium sm:px-6">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-stone-100 text-stone-600">
+                        @foreach ($products as $product)
+                            <tr data-id="{{ $product->id }}" class="transition hover:bg-stone-50/70">
+                                <td class="whitespace-nowrap px-5 py-4 font-medium text-stone-800 sm:px-6">{{ $product->product_name }}</td>
+                                <td class="whitespace-nowrap px-5 py-4">{{ $product->category }}</td>
+                                <td class="whitespace-nowrap px-5 py-4 tabular-nums">{{ $product->quantity }}</td>
+                                <td class="whitespace-nowrap px-5 py-4 tabular-nums">&#8369;{{ $product->selling_price }}</td>
+                                <td class="whitespace-nowrap px-5 py-4">{{ $product->unit }}</td>
+                                <td class="whitespace-nowrap px-5 py-4 sm:px-6">
+                                    <div class="flex justify-end gap-2">
+                                        <button type="button" class="rounded-md border border-stone-300 bg-white px-3 py-1.5 text-xs font-medium text-stone-700 transition hover:bg-stone-50">Edit</button>
+                                        <button type="button" class="rounded-md border border-stone-300 bg-white px-3 py-1.5 text-xs font-medium text-stone-600 transition hover:bg-stone-50">Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
 
             <div class="flex items-center justify-between border-t border-stone-100 px-5 py-3.5 text-xs text-stone-500 sm:px-6">

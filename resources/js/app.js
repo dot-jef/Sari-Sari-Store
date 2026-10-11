@@ -15,14 +15,6 @@ closeModalBtn.forEach(modal => {
     });
 });
 
-productForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    
-});
-
-
-
 function closeModal() {
     modal.setAttribute("hidden", "");
 }

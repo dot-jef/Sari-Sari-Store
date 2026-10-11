@@ -12,36 +12,51 @@
                 </button>
             </div>
 
-            <form id="product-form" wire:submit.prevent="store" method="POST" class="px-5 py-5 sm:px-6 sm:py-6">
+            <form id="product-form" action="{{ route('products.store') }}" method="POST" class="px-5 py-5 sm:px-6 sm:py-6">
                 @csrf
 
                 <div class="grid gap-5 sm:grid-cols-2">
                     <div class="sm:col-span-2">
                         <label for="product-name" class="block text-sm font-medium text-stone-700">Product name</label>
-                        <input id="product-name" type="text" wire:model="product_name" name="product_name" placeholder="e.g. Instant noodles" class="mt-2 block w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                        <input id="product-name" type="text" name="product_name" placeholder="e.g. Instant noodles" class="mt-2 block w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                        @error('product_name')
+                            <span class="text-red-600">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div>
                         <label for="category" class="block text-sm font-medium text-stone-700">Category</label>
-                        <input id="category" type="text" wire:model="category" name="category" placeholder="e.g. Pantry" class="mt-2 block w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                        <input id="category" type="text" name="category" placeholder="e.g. Pantry" class="mt-2 block w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                        @error('category')
+                            <span class="text-red-600">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div>
                         <label for="unit" class="block text-sm font-medium text-stone-700">Unit</label>
-                        <input id="unit" type="text" wire:model="unit" name="unit" placeholder="e.g. piece" class="mt-2 block w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                        <input id="unit" type="text" name="unit" placeholder="e.g. piece" class="mt-2 block w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                        @error('unit')
+                            <span class="text-red-600">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div>
                         <label for="quantity" class="block text-sm font-medium text-stone-700">Quantity</label>
-                        <input id="quantity" type="text" wire:model="quantity" name="quantity" placeholder="0" class="mt-2 block w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                        <input id="quantity" type="text" name="quantity" placeholder="0" class="mt-2 block w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                        @error('quantity')
+                            <span class="text-red-600">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div>
                         <label for="selling-price" class="block text-sm font-medium text-stone-700">Selling price</label>
                         <div class="relative mt-2">
                             <span class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-sm text-stone-400">&#8369;</span>
-                            <input id="selling-price" type="text" wire:model="selling_price" name="selling_price" placeholder="0.00" class="block w-full rounded-lg border border-stone-300 bg-white py-2.5 pr-3 pl-7 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                            <input id="selling-price" type="text" name="selling_price" placeholder="0.00" class="block w-full rounded-lg border border-stone-300 bg-white py-2.5 pr-3 pl-7 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
                         </div>
+                        @error('selling_price')
+                            <span class="text-red-600">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
 
