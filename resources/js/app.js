@@ -1,5 +1,4 @@
 //
-
 const productForm = document.getElementById("product-form");
 const modal = document.querySelector(".modal");
 const addProductBtn = document.getElementById("add-product-btn");
@@ -19,3 +18,7 @@ function closeModal() {
     modal.setAttribute("hidden", "");
 }
 
+productForm.addEventListener('submit', async (e) => {
+
+    const formData = new FormData(productForm);
+});

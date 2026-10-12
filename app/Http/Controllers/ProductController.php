@@ -26,6 +26,6 @@ class ProductController extends Controller
 
         session()->flash('success', 'Created Successfully');
 
-        return redirect(route('products.page'));
+        return redirect()->route('products.page');
     }
 }
