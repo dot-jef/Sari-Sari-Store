@@ -28,4 +28,22 @@ class ProductController extends Controller
 
         return redirect()->route('products.page');
     }
+
+    public function update(Request $request, string $id) {
+        $validated = $request->validate([
+            'product_name' => 'required|string',
+            'category' => 'required|string',
+            'unit' => 'required|string',
+            'quantity' => 'required|integer',
+            'selling_price' => 'required|numeric|decimal:0,2'
+        ]);
+
+        $targetProduct = Product::find($id);
+
+        $targetProduct->update($validated);
+
+        session()->flash('success', 'Created Successfully');
+
+        return redirect()->route('products.page');
+    }
 }

@@ -3,18 +3,17 @@
         <div class="w-full max-w-lg overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-2xl">
             <div class="flex items-start justify-between gap-4 border-b border-stone-100 px-5 py-5 sm:px-6">
                 <div>
-                    <p class="text-sm text-stone-500">Inventory</p>
                     <h2 id="add-product-title" class="mt-1 text-lg font-semibold tracking-tight text-stone-900">Add product</h2>
-                    <p class="mt-1 text-sm text-stone-500">Enter the details for the new item.</p>
                 </div>
                 <button type="button" class="close-modal-btn flex size-8 items-center justify-center rounded-lg text-stone-400 transition hover:bg-stone-100 hover:text-stone-700" aria-label="Close modal">
                     X
                 </button>
             </div>
 
+            // TODO: replace the value of the inputs to their current value when editing
             <form id="product-form" action="{{ route('products.store') }}" method="POST" class="px-5 py-5 sm:px-6 sm:py-6">
                 @csrf
-
+                <div id="method-container"></div>
                 <div class="grid gap-5 sm:grid-cols-2">
                     <div class="sm:col-span-2">
                         <label for="product-name" class="block text-sm font-medium text-stone-700">Product name</label>

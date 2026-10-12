@@ -36,7 +36,7 @@
             @include('modal')
 
             <div class="overflow-x-auto">
-                <table class="min-w-[760px] w-full text-left text-sm">
+                <table class="products-table min-w-[760px] w-full text-left text-sm">
                     <caption class="sr-only">Product inventory list</caption>
                     <thead class="border-b border-stone-200 bg-stone-50 text-xs uppercase tracking-wide text-stone-500">
                         <tr>
@@ -58,8 +58,8 @@
                                 <td class="whitespace-nowrap px-5 py-4">{{ $product->unit }}</td>
                                 <td class="whitespace-nowrap px-5 py-4 sm:px-6">
                                     <div class="flex justify-end gap-2">
-                                        <button type="button" class="rounded-md border border-stone-300 bg-white px-3 py-1.5 text-xs font-medium text-stone-700 transition hover:bg-stone-50">Edit</button>
-                                        <button type="button" class="rounded-md border border-stone-300 bg-white px-3 py-1.5 text-xs font-medium text-stone-600 transition hover:bg-stone-50">Delete</button>
+                                        <button type="button" class="edit-button rounded-md border border-stone-300 bg-white px-3 py-1.5 text-xs font-medium text-stone-700 transition hover:bg-stone-50">Edit</button>
+                                        <button type="button" class="delete-button rounded-md border border-stone-300 bg-white px-3 py-1.5 text-xs font-medium text-stone-600 transition hover:bg-stone-50">Delete</button>
                                     </div>
                                 </td>
                             </tr>
