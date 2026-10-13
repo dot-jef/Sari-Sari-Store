@@ -30,6 +30,8 @@ class ProductController extends Controller
     }
 
     public function update(Request $request, string $id) {
+        $targetProduct = Product::findorFail($id);
+
         $validated = $request->validate([
             'product_name' => 'required|string',
             'category' => 'required|string',
@@ -38,11 +40,9 @@ class ProductController extends Controller
             'selling_price' => 'required|numeric|decimal:0,2'
         ]);
 
-        $targetProduct = Product::find($id);
-
         $targetProduct->update($validated);
 
-        session()->flash('success', 'Created Successfully');
+        session()->flash('success', 'Updated Successfully');
 
         return redirect()->route('products.page');
     }

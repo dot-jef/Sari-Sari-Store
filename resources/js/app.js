@@ -35,7 +35,7 @@ productsTable.addEventListener('click', (e) => {
         productForm.querySelector("#product-name").value = targetProduct.querySelector(".product-name").textContent;
         productForm.querySelector("#category").value = targetProduct.querySelector(".category").textContent;
         productForm.querySelector("#quantity").value = targetProduct.querySelector(".quantity").textContent;
-        productForm.querySelector("#selling-price").value = parseFloat(targetProduct.querySelector(".selling-price").textContent.match(/\d+(\.\d+)/));
+        productForm.querySelector("#selling-price").value = targetProduct.querySelector(".selling-price").textContent.replace(/[^\d.]/g, '');
         productForm.querySelector("#unit").value = targetProduct.querySelector(".unit").textContent;
 
         toggleModal();
