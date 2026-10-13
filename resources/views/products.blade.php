@@ -51,11 +51,11 @@
                     <tbody class="divide-y divide-stone-100 text-stone-600">
                         @foreach ($products as $product)
                             <tr data-id="{{ $product->id }}" class="transition hover:bg-stone-50/70">
-                                <td class="whitespace-nowrap px-5 py-4 font-medium text-stone-800 sm:px-6">{{ $product->product_name }}</td>
-                                <td class="whitespace-nowrap px-5 py-4">{{ $product->category }}</td>
-                                <td class="whitespace-nowrap px-5 py-4 tabular-nums">{{ $product->quantity }}</td>
-                                <td class="whitespace-nowrap px-5 py-4 tabular-nums">&#8369;{{ $product->selling_price }}</td>
-                                <td class="whitespace-nowrap px-5 py-4">{{ $product->unit }}</td>
+                                <td class="product-name whitespace-nowrap px-5 py-4 font-medium text-stone-800 sm:px-6">{{ $product->product_name }}</td>
+                                <td class="category whitespace-nowrap px-5 py-4">{{ $product->category }}</td>
+                                <td class="quantity whitespace-nowrap px-5 py-4 tabular-nums">{{ $product->quantity }}</td>
+                                <td class="selling-price whitespace-nowrap px-5 py-4 tabular-nums">&#8369;{{ $product->selling_price }}</td>
+                                <td class="unit whitespace-nowrap px-5 py-4">{{ $product->unit }}</td>
                                 <td class="whitespace-nowrap px-5 py-4 sm:px-6">
                                     <div class="flex justify-end gap-2">
                                         <button type="button" class="edit-button rounded-md border border-stone-300 bg-white px-3 py-1.5 text-xs font-medium text-stone-700 transition hover:bg-stone-50">Edit</button>

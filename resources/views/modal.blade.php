@@ -10,8 +10,7 @@
                 </button>
             </div>
 
-            // TODO: replace the value of the inputs to their current value when editing
-            <form id="product-form" action="{{ route('products.store') }}" method="POST" class="px-5 py-5 sm:px-6 sm:py-6">
+            <form id="product-form" action="{{ route('products.store') }}" data-store-url="{{ route('products.store') }}" data-update-url-template="{{ route('products.update', ['id' => 'PRODUCT_ID']) }}" method="POST" class="px-5 py-5 sm:px-6 sm:py-6">
                 @csrf
                 <div id="method-container"></div>
                 <div class="grid gap-5 sm:grid-cols-2">
