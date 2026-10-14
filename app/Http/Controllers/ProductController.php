@@ -14,7 +14,7 @@ class ProductController extends Controller
     }
 
     public function store(Request $request) {
-        $validated = $request->validate([
+        $validated = $request->validateWithBag('storeBag', [
             'product_name' => 'required|string',
             'category' => 'required|string',
             'unit' => 'required|string',
@@ -32,7 +32,7 @@ class ProductController extends Controller
     public function update(Request $request, string $id) {
         $targetProduct = Product::findorFail($id);
 
-        $validated = $request->validate([
+        $validated = $request->validateWithBag('updateBag', [
             'product_name' => 'required|string',
             'category' => 'required|string',
             'unit' => 'required|string',

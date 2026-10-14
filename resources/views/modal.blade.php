@@ -17,33 +17,61 @@
                     <div class="sm:col-span-2">
                         <label for="product-name" class="block text-sm font-medium text-stone-700">Product name</label>
                         <input id="product-name" value="{{ old('product_name') }}" type="text" name="product_name" placeholder="e.g. Instant noodles" class="mt-2 block w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
-                        @error('product_name')
-                            <span class="text-red-600">{{ $message }}</span>
-                        @enderror
+                        <div class="create-error">
+                            @error('product_name', 'storeBag')
+                                <span class="text-red-600">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="update-error">
+                            @error('product_name', 'updateBag')
+                                <span class="text-red-600">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
 
                     <div>
                         <label for="category" class="block text-sm font-medium text-stone-700">Category</label>
                         <input id="category" value="{{ old('category') }}" type="text" name="category" placeholder="e.g. Pantry" class="mt-2 block w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
-                        @error('category')
-                            <span class="text-red-600">{{ $message }}</span>
-                        @enderror
+                        <div class="create-error">
+                            @error('category', 'storeBag')
+                                <span class="text-red-600">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="update-error">
+                            @error('category', 'updateBag')
+                                <span class="text-red-600">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
 
                     <div>
                         <label for="unit" class="block text-sm font-medium text-stone-700">Unit</label>
                         <input id="unit" value="{{ old('unit') }}" type="text" name="unit" placeholder="e.g. piece" class="mt-2 block w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
-                        @error('unit')
-                            <span class="text-red-600">{{ $message }}</span>
-                        @enderror
+                        <div class="create-error">
+                            @error('unit', 'storeBag')
+                                <span class="text-red-600">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="update-error">
+                            @error('unit', 'updateBag')
+                                <span class="text-red-600">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
 
                     <div>
                         <label for="quantity" class="block text-sm font-medium text-stone-700">Quantity</label>
                         <input id="quantity" value="{{ old('quantity') }}" type="text" name="quantity" placeholder="0" class="mt-2 block w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
-                        @error('quantity')
-                            <span class="text-red-600">{{ $message }}</span>
-                        @enderror
+                        <div class="create-error">
+                            @error('quantity', 'storeBag')
+                                <span class="text-red-600">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="update-error">
+                            @error('quantity', 'updateBag')
+                                <span class="text-red-600">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
 
                     <div>
@@ -52,9 +80,16 @@
                             <span class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-sm text-stone-400">&#8369;</span>
                             <input id="selling-price" value="{{ old('selling_price') }}" type="text" name="selling_price" placeholder="0.00" class="block w-full rounded-lg border border-stone-300 bg-white py-2.5 pr-3 pl-7 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
                         </div>
-                        @error('selling_price')
-                            <span class="text-red-600">{{ $message }}</span>
-                        @enderror
+                        <div class="create-error">
+                            @error('selling_price', 'storeBag')
+                                <span class="text-red-600">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="update-error">
+                            @error('selling_price', 'updateBag')
+                                <span class="text-red-600">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
                 </div>
 
