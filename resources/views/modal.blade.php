@@ -1,4 +1,4 @@
-<div class="modal" {{ $errors->any() ? '' : 'hidden' }}>
+<div class="modal {{ $errors->updateBag->any() ? 'update-modal' : 'create-modal' }}" {{ collect($errors->getBags())->some->any() ? '' : 'hidden' }}>
     <div class="fixed inset-0 z-50 grid place-items-center overflow-y-auto bg-stone-950/30 px-4 py-8" role="dialog" aria-modal="true" aria-labelledby="add-product-title">
         <div class="w-full max-w-lg overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-2xl">
             <div class="flex items-start justify-between gap-4 border-b border-stone-100 px-5 py-5 sm:px-6">

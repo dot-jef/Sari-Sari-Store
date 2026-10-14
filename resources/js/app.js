@@ -10,17 +10,11 @@ const methodContainer = document.getElementById("method-container");
 const createErrors = document.querySelectorAll(".create-error");
 const updateErrors = document.querySelectorAll(".update-error");
 
+checkModalMode();
+
 addProductBtn.addEventListener("click", () => {
-    document.getElementById("add-product-title").textContent = "Add product";
-    productForm.action = storeUrl;
-    methodContainer.innerHTML = '';
     productForm.reset();
-    createErrors.forEach((error) => {
-        error.removeAttribute("hidden");
-    });
-    updateErrors.forEach((error) => {
-        error.setAttribute("hidden", "");
-    });
+    checkModalMode(false);
     toggleModal();
 });
 
@@ -36,22 +30,15 @@ productsTable.addEventListener('click', (e) => {
         const targetProduct = editBtn.closest('tr');
         const productId = targetProduct.dataset.id;
 
-        document.getElementById("add-product-title").textContent = "Edit product";
         const updateUrl = updateUrlTemplate.replace('PRODUCT_ID', productId);
         productForm.action = updateUrl;
-        methodContainer.innerHTML = '<input type="hidden" name="_method" value="PATCH">';
         productForm.querySelector("#product-name").value = targetProduct.querySelector(".product-name").dataset.productName;
         productForm.querySelector("#category").value = targetProduct.querySelector(".category").dataset.category;
         productForm.querySelector("#quantity").value = targetProduct.querySelector(".quantity").dataset.quantity;
         productForm.querySelector("#selling-price").value = targetProduct.querySelector(".selling-price").dataset.sellingPrice;
         productForm.querySelector("#unit").value = targetProduct.querySelector(".unit").dataset.unit;
 
-        createErrors.forEach((error) => {
-            error.setAttribute("hidden", "");
-        });
-        updateErrors.forEach((error) => {
-            error.removeAttribute("hidden", "");
-        });
+        checkModalMode(true);
         toggleModal();
     }
 })
@@ -60,3 +47,24 @@ function toggleModal() {
     modal.hidden = !modal.hidden;
 }
 
+function checkModalMode(isUpdate = modal.classList.contains("update-modal")) {
+    modal.classList.toggle("update-modal", isUpdate);
+    modal.classList.toggle("create-modal", !isUpdate);
+
+    if (isUpdate) {
+        console.log("update modal");
+        document.getElementById("add-product-title").textContent = "Edit product";
+        methodContainer.innerHTML = '<input type="hidden" name="_method" value="PATCH">';
+
+        createErrors.forEach((error) => error.setAttribute("hidden", ""));
+        updateErrors.forEach((error) => error.removeAttribute("hidden", ""));
+    } else {
+        console.log("add modal");
+        document.getElementById("add-product-title").textContent = "Add product";
+        productForm.action = storeUrl;
+        methodContainer.innerHTML = '';
+
+        createErrors.forEach((error) => error.removeAttribute("hidden"));
+        updateErrors.forEach((error) => error.setAttribute("hidden", ""));
+    }
+}
