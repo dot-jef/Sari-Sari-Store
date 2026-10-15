@@ -1,4 +1,8 @@
-<div class="modal {{ $errors->updateBag->any() ? 'update-modal' : 'create-modal' }}" {{ collect($errors->getBags())->some->any() ? '' : 'hidden' }}>
+@php
+    $isUpdate = $errors->updateBag->any() && old('id');
+@endphp
+
+<div class="modal {{ $isUpdate ? 'update-modal' : 'create-modal' }}" {{ collect($errors->getBags())->some->any() ? '' : 'hidden' }} data-id="{{old('id')}}">
     <div class="fixed inset-0 z-50 grid place-items-center overflow-y-auto bg-stone-950/30 px-4 py-8" role="dialog" aria-modal="true" aria-labelledby="add-product-title">
         <div class="w-full max-w-lg overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-2xl">
             <div class="flex items-start justify-between gap-4 border-b border-stone-100 px-5 py-5 sm:px-6">
@@ -10,9 +14,14 @@
                 </button>
             </div>
 
-            <form id="product-form" action="{{ route('products.store') }}" data-store-url="{{ route('products.store') }}" data-update-url-template="{{ route('products.update', ['id' => 'PRODUCT_ID']) }}" method="POST" class="px-5 py-5 sm:px-6 sm:py-6">
+            <form id="product-form" action="{{ $isUpdate ? route('products.update', ['id' => old('id')]) : route('products.store') }}" data-store-url="{{ route('products.store') }}" data-update-url-template="{{ route('products.update', ['id' => 'PRODUCT_ID']) }}" method="POST" class="px-5 py-5 sm:px-6 sm:py-6">
                 @csrf
                 <div id="method-container"></div>
+                <div id="id-container">
+                    @if ($isUpdate)
+                        <input type="hidden" name="id" value="{{ old('id') }}">
+                    @endif
+                </div>
                 <div class="grid gap-5 sm:grid-cols-2">
                     <div class="sm:col-span-2">
                         <label for="product-name" class="block text-sm font-medium text-stone-700">Product name</label>

@@ -50,7 +50,7 @@
                     </thead>
                     <tbody class="divide-y divide-stone-100 text-stone-600">
                         @foreach ($products as $product)
-                            <tr data-id="{{ $product->id }}" class="transition hover:bg-stone-50/70">
+                            <tr data-id="{{ $product->id }}" class="{{ old('id') === $product->id ? 'failed-edit' : "" }} transition hover:bg-stone-50/70">
                                 <td data-product-name="{{ $product->product_name }}" class="product-name whitespace-nowrap px-5 py-4 font-medium text-stone-800 sm:px-6">{{ $product->product_name }}</td>
                                 <td data-category="{{ $product->category }}" class="category whitespace-nowrap px-5 py-4">{{ $product->category }}</td>
                                 <td data-quantity="{{ $product->quantity }}" class="quantity whitespace-nowrap px-5 py-4 tabular-nums">{{ $product->quantity }}</td>

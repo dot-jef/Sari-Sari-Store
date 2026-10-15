@@ -7,8 +7,10 @@ const productsTable = document.querySelector(".products-table");
 const storeUrl = productForm.dataset.storeUrl;
 const updateUrlTemplate = productForm.dataset.updateUrlTemplate;
 const methodContainer = document.getElementById("method-container");
+const idContainer = document.getElementById("id-container");
 const createErrors = document.querySelectorAll(".create-error");
 const updateErrors = document.querySelectorAll(".update-error");
+let failedEditModal = modal.classList.contains("update-modal");
 
 checkModalMode();
 
@@ -30,9 +32,10 @@ productsTable.addEventListener('click', (e) => {
     if (editBtn) {
         const targetProduct = editBtn.closest('tr');
         const productId = targetProduct.dataset.id;
-
+        failedEditModal = modal.dataset.id === productId;
         const updateUrl = updateUrlTemplate.replace('PRODUCT_ID', productId);
         productForm.action = updateUrl;
+        idContainer.innerHTML = `<input type="hidden" name="id" value="${productId}">`;
         productForm.querySelector("#product-name").value = targetProduct.querySelector(".product-name").dataset.productName;
         productForm.querySelector("#category").value = targetProduct.querySelector(".category").dataset.category;
         productForm.querySelector("#quantity").value = targetProduct.querySelector(".quantity").dataset.quantity;
@@ -57,8 +60,13 @@ function checkModalMode(isUpdate = modal.classList.contains("update-modal")) {
         document.getElementById("add-product-title").textContent = "Edit product";
         methodContainer.innerHTML = '<input type="hidden" name="_method" value="PATCH">';
 
+
         createErrors.forEach((error) => error.setAttribute("hidden", ""));
-        updateErrors.forEach((error) => error.removeAttribute("hidden", ""));
+        if (failedEditModal) {
+            updateErrors.forEach((error) => error.removeAttribute("hidden"));
+        } else {
+            updateErrors.forEach((error) => error.setAttribute("hidden", ""));
+        }
     } else {
         const inputs = productForm.querySelectorAll("input");
         inputs.forEach(input => input.value = "");
@@ -66,6 +74,7 @@ function checkModalMode(isUpdate = modal.classList.contains("update-modal")) {
         document.getElementById("add-product-title").textContent = "Add product";
         productForm.action = storeUrl;
         methodContainer.innerHTML = '';
+        idContainer.innerHTML = '';
 
         createErrors.forEach((error) => error.removeAttribute("hidden"));
         updateErrors.forEach((error) => error.setAttribute("hidden", ""));
