@@ -24,6 +24,7 @@ closeModalBtn.forEach(modal => {
     });
 });
 
+// check Id and change the modal inputs value according to the Id and modal mode
 productsTable.addEventListener('click', (e) => {
     const editBtn = e.target.closest('.edit-button');
     if (editBtn) {
@@ -59,6 +60,8 @@ function checkModalMode(isUpdate = modal.classList.contains("update-modal")) {
         createErrors.forEach((error) => error.setAttribute("hidden", ""));
         updateErrors.forEach((error) => error.removeAttribute("hidden", ""));
     } else {
+        const inputs = productForm.querySelectorAll("input");
+        inputs.forEach(input => input.value = "");
         console.log("add modal");
         document.getElementById("add-product-title").textContent = "Add product";
         productForm.action = storeUrl;
