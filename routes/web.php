@@ -9,5 +9,5 @@ Route::redirect('/', '/dashboard');
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.page');
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
-
 Route::patch('/products/{id}', [ProductController::class, 'update'])->name('products.update');
+// TODO: create a route for deleting a product

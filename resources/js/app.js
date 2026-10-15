@@ -26,7 +26,7 @@ closeModalBtn.forEach(modal => {
     });
 });
 
-// check Id and change the modal inputs value according to the Id and modal mode
+// TODO: add a delete button listener that prompts a confirmation modal
 productsTable.addEventListener('click', (e) => {
     const editBtn = e.target.closest('.edit-button');
     if (editBtn) {

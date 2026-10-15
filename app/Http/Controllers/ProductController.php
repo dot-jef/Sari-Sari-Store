@@ -46,4 +46,6 @@ class ProductController extends Controller
 
         return redirect()->route('products.page');
     }
+
+    // TODO: create destroy function to delete a specific product
 }
