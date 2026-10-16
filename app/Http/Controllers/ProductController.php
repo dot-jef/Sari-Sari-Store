@@ -47,13 +47,12 @@ class ProductController extends Controller
         return redirect()->route('products.page');
     }
 
-    // TODO: create destroy function to delete a specific product
-    public function destroy(Request $request, string $id) {
+    public function destroy(string $id) {
         $targetProduct = Product::findOrFail($id);
 
         $targetProduct->delete();
 
-        session()->flash('success', 'Deleted Successfully');
+        session()->flash('success', 'Product Deleted Successfully');
 
         return redirect()->route('products.page');
     }

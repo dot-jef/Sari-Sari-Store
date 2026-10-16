@@ -1,15 +1,19 @@
 //
 const productForm = document.getElementById("product-form");
+const deleteForm = document.getElementById("delete-form");
 const modal = document.querySelector(".modal");
+const deleteModal = document.getElementById("delete-modal");
 const addProductBtn = document.getElementById("add-product-btn");
 const closeModalBtn = document.querySelectorAll(".close-modal-btn");
 const productsTable = document.querySelector(".products-table");
 const storeUrl = productForm.dataset.storeUrl;
 const updateUrlTemplate = productForm.dataset.updateUrlTemplate;
+const destroyUrlTemplate = deleteForm.dataset.destroyUrlTemplate;
 const methodContainer = document.getElementById("method-container");
 const idContainer = document.getElementById("id-container");
 const createErrors = document.querySelectorAll(".create-error");
 const updateErrors = document.querySelectorAll(".update-error");
+const cancelDeleteBtn = document.querySelector(".cancel-delete-btn");
 let failedEditModal = modal.classList.contains("update-modal");
 
 checkModalMode();
@@ -26,7 +30,6 @@ closeModalBtn.forEach(modal => {
     });
 });
 
-// TODO: add a delete button listener that prompts a confirmation modal
 productsTable.addEventListener('click', (e) => {
     const editBtn = e.target.closest('.edit-button');
     if (editBtn) {
@@ -46,11 +49,29 @@ productsTable.addEventListener('click', (e) => {
         toggleModal();
     }
 
-    
+    const deleteBtn = e.target.closest(".delete-button");
+    if (deleteBtn) {
+        const targetProduct = deleteBtn.closest('tr');
+        const productId = targetProduct.dataset.id;
+
+        deleteForm.action = destroyUrlTemplate.replace('PRODUCT_ID', productId);
+
+        toggleDeleteModal();
+    }
+
 })
+
+cancelDeleteBtn.addEventListener("click", () => {
+    toggleDeleteModal();
+});
+
 
 function toggleModal() {
     modal.hidden = !modal.hidden;
+}
+
+function toggleDeleteModal() {
+    deleteModal.hidden = !deleteModal.hidden;
 }
 
 function checkModalMode(isUpdate = modal.classList.contains("update-modal")) {

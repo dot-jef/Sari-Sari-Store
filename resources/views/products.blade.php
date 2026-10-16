@@ -68,6 +68,8 @@
                 </table>
             </div>
 
+            @include('deleteModal')
+            
             <div class="flex items-center justify-between border-t border-stone-100 px-5 py-3.5 text-xs text-stone-500 sm:px-6">
                 <span>Showing 5 of 12 products</span>
                 <span>Page 1 of 3</span>
