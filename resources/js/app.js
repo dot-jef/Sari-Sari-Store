@@ -45,6 +45,8 @@ productsTable.addEventListener('click', (e) => {
         checkModalMode(true);
         toggleModal();
     }
+
+    
 })
 
 function toggleModal() {
