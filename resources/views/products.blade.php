@@ -20,17 +20,21 @@
                         <h2 id="product-list-heading" class="text-base font-semibold text-stone-900">Product list</h2>
                         <p class="mt-1 text-sm text-stone-500">12 products in your catalogue</p>
                     </div>
-                </div>
-
-                <div class="mt-5 flex items-end justify-between gap-4">
-                    <div class="relative max-w-md flex-1">
-                        <label for="product-search" class="sr-only">Search products</label>
-                        <input id="product-search" type="search" placeholder="Search products" class="block w-full rounded-lg border border-stone-300 bg-white py-2.5 pr-3 pl-9 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
-                    </div>
                     <button type="button" id="add-product-btn" class="inline-flex shrink-0 items-center gap-2 rounded-lg bg-stone-800 px-3.5 py-2.5 text-sm font-medium text-stone-50 shadow-sm transition hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2">
                         Add product
                     </button>
                 </div>
+
+                <div class="mt-5 flex items-end justify-between gap-4">
+                    <form id="search-form" action="{{ route('products.index') }}" class="flex w-full max-w-md items-center gap-2">
+                        <label for="product-name-search" class="sr-only">Search products</label>
+                        <input id="product-name-search" name="q" type="search" value="{{ old('q', request('q')) }}" placeholder="Search products" class="block min-w-0 flex-1 rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 transition focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                        <button type="submit" class="inline-flex shrink-0 items-center rounded-lg bg-stone-800 px-3.5 py-2.5 text-sm font-medium text-stone-50 shadow-sm transition hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2">
+                            Search
+                        </button>
+                    </form>
+                </div>
+
             </div>
 
             @include('modal')
@@ -69,7 +73,7 @@
             </div>
 
             @include('deleteModal')
-            
+
             <div class="flex items-center justify-between border-t border-stone-100 px-5 py-3.5 text-xs text-stone-500 sm:px-6">
                 <span>Showing 5 of 12 products</span>
                 <span>Page 1 of 3</span>

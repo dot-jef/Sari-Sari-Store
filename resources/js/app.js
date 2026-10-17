@@ -65,7 +65,6 @@ cancelDeleteBtn.addEventListener("click", () => {
     toggleDeleteModal();
 });
 
-
 function toggleModal() {
     modal.hidden = !modal.hidden;
 }

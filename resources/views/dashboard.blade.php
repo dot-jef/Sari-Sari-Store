@@ -8,9 +8,6 @@
             <h1 class="mt-1 text-2xl font-semibold tracking-tight text-stone-900 sm:text-3xl">Good morning, Esteron</h1>
             <p class="mt-2 text-sm text-stone-500">Here’s a simple view of how your store is doing today.</p>
         </div>
-        <span class="inline-flex shrink-0 items-center gap-2 rounded-lg border border-stone-300 bg-white px-3.5 py-2 text-sm font-medium text-stone-700 shadow-sm">
-            <span class="hidden sm:inline">Add product</span><span class="sm:hidden">Add</span>
-        </span>
     </header>
 
     <section class="mt-7" aria-labelledby="overview-heading">

@@ -7,8 +7,14 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function index() {
-        $products = Product::latest()->get();
+    public function index(Request $request) {
+        $validated = $request->validateWithBag('searchBag', [
+            'q' => 'nullable|string'
+        ]);
+
+        $query = $request->input('q');
+
+        $products = Product::where('product_name', 'LIKE', $query . '%')->latest()->get();
 
         return view('products', compact('products'));
     }
