@@ -8,13 +8,20 @@ use App\Models\Product;
 class ProductController extends Controller
 {
     public function index(Request $request) {
-        $validated = $request->validateWithBag('searchBag', [
-            'q' => 'nullable|string'
+        $request->validateWithBag('searchBag', [
+            'q' => 'nullable|string|min:2'
         ]);
 
-        $query = $request->input('q');
+        $products = Product::query()
+            ->when($request->input('q'), function ($query, $search) {
+                $query->where('product_name', 'LIKE', "%{$search}%");
+            })
+            ->when($request->input('category'), function ($query, $category) {
+                $query->where('category', $category);
+            })
 
-        $products = Product::where('product_name', 'LIKE', $query . '%')->latest()->get();
+            ->latest()
+            ->get();
 
         return view('products', compact('products'));
     }
@@ -32,7 +39,7 @@ class ProductController extends Controller
 
         session()->flash('success', 'Created Successfully');
 
-        return redirect()->route('products.page');
+        return redirect()->route('products.index');
     }
 
     public function update(Request $request, string $id) {
@@ -50,7 +57,7 @@ class ProductController extends Controller
 
         session()->flash('success', 'Updated Successfully');
 
-        return redirect()->route('products.page');
+        return redirect()->route('products.index');
     }
 
     public function destroy(string $id) {
@@ -60,6 +67,6 @@ class ProductController extends Controller
 
         session()->flash('success', 'Product Deleted Successfully');
 
-        return redirect()->route('products.page');
+        return redirect()->route('products.index');
     }
 }

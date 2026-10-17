@@ -2,7 +2,7 @@
     $isUpdate = $errors->updateBag->any() && old('id');
 @endphp
 
-<div class="modal {{ $isUpdate ? 'update-modal' : 'create-modal' }}" {{ collect($errors->getBags())->some->any() ? '' : 'hidden' }} data-id="{{old('id')}}">
+<div class="modal {{ $isUpdate ? 'update-modal' : 'create-modal' }}" {{ collect($errors->getBag('storeBag'))->some->any() || collect($errors->getBag('updateBag'))->some->any()? '' : 'hidden' }} data-id="{{old('id')}}">
     <div class="fixed inset-0 z-50 grid place-items-center overflow-y-auto bg-stone-950/30 px-4 py-8" role="dialog" aria-modal="true" aria-labelledby="add-product-title">
         <div class="w-full max-w-lg overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-2xl">
             <div class="flex items-start justify-between gap-4 border-b border-stone-100 px-5 py-5 sm:px-6">

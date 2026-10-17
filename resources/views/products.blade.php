@@ -26,15 +26,29 @@
                 </div>
 
                 <div class="mt-5 flex items-end justify-between gap-4">
-                    <form id="search-form" action="{{ route('products.index') }}" class="flex w-full max-w-md items-center gap-2">
+                    <form id="search-form" action="{{ route('products.index') }}" class="flex w-full max-w-2xl items-center gap-2">
                         <label for="product-name-search" class="sr-only">Search products</label>
                         <input id="product-name-search" name="q" type="search" value="{{ old('q', request('q')) }}" placeholder="Search products" class="block min-w-0 flex-1 rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 transition focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                        <label for="product-category" class="sr-only">Filter by category</label>
+                        <select id="product-category" name="category" class="block w-44 shrink-0 appearance-none rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-700 transition focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                            <option value="">All categories</option>
+                            <option value="Beverages" @selected(request('category') === 'Beverages')>Beverages</option>
+                            <option value="Canned goods" @selected(request('category') === 'Canned goods')>Canned goods</option>
+                            <option value="Frozen food" @selected(request('category') === 'Frozen food')>Frozen food</option>
+                            <option value="Household" @selected(request('category') === 'Household')>Household</option>
+                            <option value="Instant food" @selected(request('category') === 'Instant food')>Instant food</option>
+                            <option value="Pantry" @selected(request('category') === 'Pantry')>Pantry</option>
+                            <option value="Personal care" @selected(request('category') === 'Personal care')>Personal care</option>
+                            <option value="Snacks" @selected(request('category') === 'Snacks')>Snacks</option>
+                        </select>
                         <button type="submit" class="inline-flex shrink-0 items-center rounded-lg bg-stone-800 px-3.5 py-2.5 text-sm font-medium text-stone-50 shadow-sm transition hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2">
                             Search
                         </button>
                     </form>
                 </div>
-
+                @error('q', 'searchBag')
+                    <span class="text-red-600">{{ $message }}</span>
+                @enderror
             </div>
 
             @include('modal')
