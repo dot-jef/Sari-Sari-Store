@@ -58,7 +58,7 @@ class ProductController extends Controller
 
         session()->flash('success', 'Updated Successfully');
 
-        return redirect()->route('products.index');
+        return back();
     }
 
     public function destroy(string $id) {
@@ -68,6 +68,6 @@ class ProductController extends Controller
 
         session()->flash('success', 'Product Deleted Successfully');
 
-        return redirect()->route('products.index');
+        return back();
     }
 }
