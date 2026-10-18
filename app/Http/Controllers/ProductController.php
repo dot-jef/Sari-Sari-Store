@@ -12,18 +12,19 @@ class ProductController extends Controller
             'q' => 'nullable|string|min:2'
         ]);
 
+        $activeFilters = array_filter($request->query());
+
         $products = Product::query()
-            ->when($request->input('q'), function ($query, $search) {
-                $query->where('product_name', 'LIKE', "%{$search}%");
+            ->when($request->input('q'), function ($query, $name) {
+                $query->where('product_name', 'LIKE', "%{$name}%");
             })
             ->when($request->input('category'), function ($query, $category) {
                 $query->where('category', $category);
             })
 
-            ->latest()
-            ->get();
+            ->latest()->paginate(10)->appends($activeFilters);
 
-        return view('products', compact('products'));
+        return view('products', ['products' => $products]);
     }
 
     public function store(Request $request) {
