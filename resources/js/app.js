@@ -16,8 +16,6 @@ const updateErrors = document.querySelectorAll(".update-error");
 const cancelDeleteBtn = document.querySelector(".cancel-delete-btn");
 let failedEditModal = modal.classList.contains("update-modal");
 
-checkModalMode();
-
 addProductBtn.addEventListener("click", () => {
     productForm.reset();
     checkModalMode(false);
