@@ -21,6 +21,19 @@ class ProductController extends Controller
             ->when($request->input('category'), function ($query, $category) {
                 $query->where('category', $category);
             })
+            ->when($request->input('quantity'), function ($query, $quantity) {
+                switch ($quantity) {
+                    case "In Stock":
+                        $query->where('quantity', '>=', 6);
+                        break;
+                    case "Low Stock":
+                        $query->where('quantity', '>', 0)->where('quantity', '<=', 5);
+                        break;
+                    case "Out of Stock":
+                        $query->where('quantity', '<=', 0);
+                        break;
+                }
+            })
 
             ->latest()->paginate(10)->appends($activeFilters);
 

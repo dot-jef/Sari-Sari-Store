@@ -41,6 +41,13 @@
                             <option value="Personal care" @selected(request('category') === 'Personal care')>Personal care</option>
                             <option value="Snacks" @selected(request('category') === 'Snacks')>Snacks</option>
                         </select>
+                        <label for="product-quantity" class="sr-only">Filter by quantity</label>
+                        <select id="product-quantity" name="quantity" class="block w-44 shrink-0 appearance-none rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-700 transition focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                            <option value="">All Products</option>
+                            <option value="In Stock" @selected(request('quantity') === "In Stock")>In Stock</option>
+                            <option value="Low Stock" @selected(request('quantity') === "Low Stock")>Low Stock</option>
+                            <option value="Out of Stock" @selected(request('quantity') === "Out of Stock")>Out of Stock</option>
+                        </select>
                         <button type="submit" class="inline-flex shrink-0 items-center rounded-lg bg-stone-800 px-3.5 py-2.5 text-sm font-medium text-stone-50 shadow-sm transition hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2">
                             Search
                         </button>
