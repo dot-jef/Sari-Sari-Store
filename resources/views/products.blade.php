@@ -48,6 +48,15 @@
                             <option value="Low Stock" @selected(request('quantity') === "Low Stock")>Low Stock</option>
                             <option value="Out of Stock" @selected(request('quantity') === "Out of Stock")>Out of Stock</option>
                         </select>
+                        <label for="order-by" class="sr-only">Order By</label>
+                        <select id="order-by" name="order_by" class="block w-44 shrink-0 appearance-none rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-700 transition focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                            <option value="">Newest</option>
+                            <option value="Name ASC" @selected(request('order_by') === "Name ASC")>Name: A-Z</option>
+                            <option value="Name DESC" @selected(request('order_by') === "Name DESC")>Name: Z-A</option>
+                            <option value="Price ASC" @selected(request('order_by') === "Price ASC")>Price: low-high</option>
+                            <option value="Price DESC" @selected(request('order_by') === "Price DESC")>Price: high-low</option>
+                            <option value="Quantity ASC" @selected(request('order_by') === "Quantity ASC")>Quantity: low-high</option>
+                        </select>
                         <button type="submit" class="inline-flex shrink-0 items-center rounded-lg bg-stone-800 px-3.5 py-2.5 text-sm font-medium text-stone-50 shadow-sm transition hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2">
                             Search
                         </button>
