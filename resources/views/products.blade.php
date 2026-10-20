@@ -63,9 +63,13 @@
                         </button>
                     </form>
                 </div>
-                @error('q', 'searchBag')
-                    <span class="text-red-600">{{ $message }}</span>
-                @enderror
+                @if (@errors->searchBag->any())
+                    <span class="text-red-600">
+                        @foreach ($errors->searchBag->all() as $message)
+                            <p>{{ $message }}</p>
+                        @endforeach
+                    </span>
+                @endif
             </div>
 
             @include('modal')
