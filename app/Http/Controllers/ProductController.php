@@ -4,12 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Validation\Rule;
 
 class ProductController extends Controller
 {
     public function index(Request $request) {
+
+        $validCategories = ['Beverages', 'Canned Goods', 'Frozen Food', 'Household', 'Instant Food', 'Pantry', 'Personal Care', 'Snack'];
+        $validQuantity = ['In Stock', 'Low Stock', 'Out of Stock'];
+        $validSorting = ['Name ASC', 'Name DESC', 'Price ASC', 'Price DESC', 'Quantity ASC', 'Quantity DESC'];
+
         $request->validateWithBag('searchBag', [
-            'q' => 'nullable|string|min:2'
+            'q' => 'nullable|string|min:2',
+            'category' => ['nullable','string', Rule::in($validCategories)],
+            'quantity' => ['nullable', 'string', Rule::in($validQuantity)],
+            'order_by' => ['nullable', 'string', Rule::in($validSorting)]
         ]);
 
         $activeFilters = array_filter($request->query());
@@ -34,8 +43,32 @@ class ProductController extends Controller
                         break;
                 }
             })
+            ->when($request->input('order_by'), function ($query, $order) {
+                switch ($order) {
+                    case "Name ASC":
+                        $query->orderBy('product_name');
+                        break;
+                    case "Name DESC":
+                        $query->orderBy('product_name', 'desc');
+                        break;
+                    case "Price ASC":
+                        $query->orderBy('selling_price');
+                        break;
+                    case "Price DESC":
+                        $query->orderBy('selling_price', 'desc');
+                        break;
+                    case "Quantity ASC":
+                        $query->orderBy('quantity');
+                        break;
+                    case "Quantity DESC":
+                        $query->orderBy('quantity', 'desc');
+                        break;
+                    default:
+                        $query->latest();
+                }
+            })
 
-            ->latest()->paginate(10)->appends($activeFilters);
+            ->paginate(10)->appends($activeFilters);
 
         return view('products', ['products' => $products]);
     }

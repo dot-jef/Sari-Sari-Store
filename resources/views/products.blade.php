@@ -56,6 +56,7 @@
                             <option value="Price ASC" @selected(request('order_by') === "Price ASC")>Price: low-high</option>
                             <option value="Price DESC" @selected(request('order_by') === "Price DESC")>Price: high-low</option>
                             <option value="Quantity ASC" @selected(request('order_by') === "Quantity ASC")>Quantity: low-high</option>
+                            <option value="Quantity DESC" @selected(request('order_by') === "Quantity DESC")>Quantity: high-low</option>
                         </select>
                         <button type="submit" class="inline-flex shrink-0 items-center rounded-lg bg-stone-800 px-3.5 py-2.5 text-sm font-medium text-stone-50 shadow-sm transition hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2">
                             Search
