@@ -45,30 +45,7 @@ class ProductController extends Controller
                     break;
             }
         });
-        // ->when($request->input('order_by'), function ($query, $order) {
-        //     switch ($order) {
-        //         case "Name ASC":
-        //             $query->orderBy('product_name');
-        //             break;
-        //         case "Name DESC":
-        //             $query->orderBy('product_name', 'desc');
-        //             break;
-        //         case "Price ASC":
-        //             $query->orderBy('selling_price');
-        //             break;
-        //         case "Price DESC":
-        //             $query->orderBy('selling_price', 'desc');
-        //             break;
-        //         case "Quantity ASC":
-        //             $query->orderBy('quantity');
-        //             break;
-        //         case "Quantity DESC":
-        //             $query->orderBy('quantity', 'desc');
-        //             break;
-        //         default:
-        //             $query->latest();
-        //     }
-        // })
+        
         if ($request->input('order_by')) {
             match ($request->input('order_by')) {
                 'Name ASC' => $products->orderBy('product_name'),

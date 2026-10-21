@@ -16,7 +16,11 @@
 
             <form id="product-form" action="{{ $isUpdate ? route('products.update', ['id' => old('id')]) : route('products.store') }}" data-store-url="{{ route('products.store') }}" data-update-url-template="{{ route('products.update', ['id' => 'PRODUCT_ID']) }}" method="POST" class="px-5 py-5 sm:px-6 sm:py-6">
                 @csrf
-                <div id="method-container"></div>
+                <div id="method-container">
+                    @if ($isUpdate)
+                        @method('PATCH')
+                    @endif
+                </div>
                 <div id="id-container">
                     @if ($isUpdate)
                         <input type="hidden" name="id" value="{{ old('id') }}">
@@ -40,7 +44,16 @@
 
                     <div>
                         <label for="category" class="block text-sm font-medium text-stone-700">Category</label>
-                        <input id="category" value="{{ old('category') }}" type="text" name="category" placeholder="e.g. Pantry" class="mt-2 block w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                        <select id="category" name="category">
+                            <option value="Beverages" @selected(old('category') === 'Beverages')>Beverages</option>
+                            <option value="Canned Goods" @selected(old('category') === 'Canned Goods')>Canned Goods</option>
+                            <option value="Frozen Food" @selected(old('category') === 'Frozen Food')>Frozen Food</option>
+                            <option value="Household" @selected(old('category') === 'Household')>Household</option>
+                            <option value="Instant Food" @selected(old('category') === 'Instant Food')>Instant Food</option>
+                            <option value="Pantry" @selected(old('category') === 'Pantry')>Pantry</option>
+                            <option value="Personal Care" @selected(old('category') === 'Personal Care')>Personal Care</option>
+                            <option value="Snack" @selected(old('category') === 'Snack')>Snack</option>
+                        </select>
                         <div class="create-error">
                             @error('category', 'storeBag')
                                 <span class="text-red-600">{{ $message }}</span>
@@ -55,7 +68,16 @@
 
                     <div>
                         <label for="unit" class="block text-sm font-medium text-stone-700">Unit</label>
-                        <input id="unit" value="{{ old('unit') }}" type="text" name="unit" placeholder="e.g. piece" class="mt-2 block w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                        <select name="unit" id="unit">
+                            <option value="piece" @selected(old('unit') === 'piece')>piece</option>
+                            <option value="pack" @selected(old('unit') === 'pack')>pack</option>
+                            <option value="bottle" @selected(old('unit') === 'bottle')>bottle</option>
+                            <option value="sachet" @selected(old('unit') === 'sachet')>sachet</option>
+                            <option value="can" @selected(old('unit') === 'can')>can</option>
+                            <option value="cup" @selected(old('unit') === 'cup')>cup</option>
+                            <option value="pouch" @selected(old('unit') === 'pouch')>pouch</option>
+                            <option value="bar" @selected(old('unit') === 'bar')>bar</option>
+                        </select>
                         <div class="create-error">
                             @error('unit', 'storeBag')
                                 <span class="text-red-600">{{ $message }}</span>
