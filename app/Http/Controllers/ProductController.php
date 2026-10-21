@@ -71,14 +71,16 @@ class ProductController extends Controller
         // })
         if ($request->input('order_by')) {
             match ($request->input('order_by')) {
-                "Name ASC" => $products->orderBy('product_name'),
-                "Name DESC" => $products->orderBy('product_name', 'desc'),
-                "Price ASC" => $products->orderBy('selling_price'),
-                "Price DESC" => $products->orderBy('selling_price', 'desc'),
-                "Quantity ASC" => $products->orderBy('quantity'),
-                "Quantity DESC" => $products->orderBy('quantity', 'desc'),
+                'Name ASC' => $products->orderBy('product_name'),
+                'Name DESC' => $products->orderBy('product_name', 'desc'),
+                'Price ASC' => $products->orderBy('selling_price'),
+                'Price DESC' => $products->orderBy('selling_price', 'desc'),
+                'Quantity ASC' => $products->orderBy('quantity'),
+                'Quantity DESC' => $products->orderBy('quantity', 'desc'),
                 default => $products->latest()
             };
+        } else {
+            $products->latest();
         }
 
         $results = $products->paginate(10)->appends($activeFilters);
