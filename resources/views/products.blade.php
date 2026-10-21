@@ -63,7 +63,7 @@
                         </button>
                     </form>
                 </div>
-                @if (@errors->searchBag->any())
+                @if ($errors->searchBag->any())
                     <span class="text-red-600">
                         @foreach ($errors->searchBag->all() as $message)
                             <p>{{ $message }}</p>

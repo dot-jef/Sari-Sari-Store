@@ -8,15 +8,17 @@ use Illuminate\Validation\Rule;
 
 class ProductController extends Controller
 {
+    protected $categories = ['Beverages', 'Canned Goods', 'Frozen Food', 'Household', 'Instant Food', 'Pantry', 'Personal Care', 'Snack'];
+    protected $units = ['bottle', 'sachet', 'pack', 'can', 'piece', 'cup', 'pouch', 'bar'];
+
     public function index(Request $request) {
 
-        $validCategories = ['Beverages', 'Canned Goods', 'Frozen Food', 'Household', 'Instant Food', 'Pantry', 'Personal Care', 'Snack'];
         $validQuantity = ['In Stock', 'Low Stock', 'Out of Stock'];
         $validSorting = ['Name ASC', 'Name DESC', 'Price ASC', 'Price DESC', 'Quantity ASC', 'Quantity DESC'];
 
         $request->validateWithBag('searchBag', [
-            'q' => 'nullable|string|min:2',
-            'category' => ['nullable','string', Rule::in($validCategories)],
+            'q' => 'nullable|string|min:2|max:50',
+            'category' => ['nullable','string', Rule::in($categories)],
             'quantity' => ['nullable', 'string', Rule::in($validQuantity)],
             'order_by' => ['nullable', 'string', Rule::in($validSorting)]
         ]);
@@ -74,12 +76,13 @@ class ProductController extends Controller
     }
 
     public function store(Request $request) {
+
         $validated = $request->validateWithBag('storeBag', [
-            'product_name' => 'required|string',
-            'category' => 'required|string',
-            'unit' => 'required|string',
-            'quantity' => 'required|integer',
-            'selling_price' => 'required|numeric|decimal:0,2'
+            'product_name' => 'required|string|min:3|max:50',
+            'category' => ['required', 'string', Rule::in($categories)],
+            'unit' => ['required', 'string', Rule::in($units)],
+            'quantity' => 'required|integer|min:0',
+            'selling_price' => 'required|numeric|decimal:0,2|min:0'
         ]);
 
         Product::create($validated);
@@ -93,11 +96,11 @@ class ProductController extends Controller
         $targetProduct = Product::findorFail($id);
 
         $validated = $request->validateWithBag('updateBag', [
-            'product_name' => 'required|string',
-            'category' => 'required|string',
-            'unit' => 'required|string',
-            'quantity' => 'required|integer',
-            'selling_price' => 'required|numeric|decimal:0,2'
+            'product_name' => 'required|string|min:3|max:50',
+            'category' => ['required', 'string', Rule::in($categories)],
+            'unit' => ['required', 'string', Rule::in($units)],
+            'quantity' => 'required|integer|min:0',
+            'selling_price' => 'required|numeric|decimal:0,2|min:0'
         ]);
 
         $targetProduct->update($validated);
