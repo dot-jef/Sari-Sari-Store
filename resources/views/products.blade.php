@@ -39,7 +39,7 @@
                             <option value="Instant Food" @selected(request('category') === 'Instant Food')>Instant Food</option>
                             <option value="Pantry" @selected(request('category') === 'Pantry')>Pantry</option>
                             <option value="Personal Care" @selected(request('category') === 'Personal Care')>Personal Care</option>
-                            <option value="Snack" @selected(request('category') === 'Snack')>Snacks</option>
+                            <option value="Snack" @selected(request('category') === 'Snack')>Snack</option>
                         </select>
                         <label for="product-quantity" class="sr-only">Filter by quantity</label>
                         <select id="product-quantity" name="quantity" class="block w-44 shrink-0 appearance-none rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-700 transition focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
