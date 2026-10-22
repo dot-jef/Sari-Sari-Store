@@ -45,7 +45,7 @@ class ProductController extends Controller
                     break;
             }
         });
-        
+
         if ($request->input('order_by')) {
             match ($request->input('order_by')) {
                 'Name ASC' => $products->orderBy('product_name'),
@@ -62,7 +62,7 @@ class ProductController extends Controller
 
         $results = $products->paginate(10)->appends($activeFilters);
 
-        return view('products', ['products' => $results]);
+        return view('products', ['products' => $results, 'categories' => $this->categories, 'units' => $this->units]);
     }
 
     public function store(Request $request) {

@@ -29,7 +29,7 @@
                 <div class="grid gap-5 sm:grid-cols-2">
                     <div class="sm:col-span-2">
                         <label for="product-name" class="block text-sm font-medium text-stone-700">Product name</label>
-                        <input id="product-name" value="{{ old('product_name') }}" type="text" name="product_name" placeholder="e.g. Instant noodles" class="mt-2 block w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                        <input id="product-name" min="3" max="50" value="{{ old('product_name') }}" type="text" name="product_name" placeholder="e.g. Instant noodles" class="mt-2 block w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
                         <div class="create-error">
                             @error('product_name', 'storeBag')
                                 <span class="text-red-600">{{ $message }}</span>
@@ -45,14 +45,9 @@
                     <div>
                         <label for="category" class="block text-sm font-medium text-stone-700">Category</label>
                         <select id="category" name="category">
-                            <option value="Beverages" @selected(old('category') === 'Beverages')>Beverages</option>
-                            <option value="Canned Goods" @selected(old('category') === 'Canned Goods')>Canned Goods</option>
-                            <option value="Frozen Food" @selected(old('category') === 'Frozen Food')>Frozen Food</option>
-                            <option value="Household" @selected(old('category') === 'Household')>Household</option>
-                            <option value="Instant Food" @selected(old('category') === 'Instant Food')>Instant Food</option>
-                            <option value="Pantry" @selected(old('category') === 'Pantry')>Pantry</option>
-                            <option value="Personal Care" @selected(old('category') === 'Personal Care')>Personal Care</option>
-                            <option value="Snack" @selected(old('category') === 'Snack')>Snack</option>
+                            @foreach ($categories as $category)
+                                <option value="{{$category}}" @selected(old('category') === $category)>{{$category}}</option>
+                            @endforeach
                         </select>
                         <div class="create-error">
                             @error('category', 'storeBag')
@@ -69,14 +64,9 @@
                     <div>
                         <label for="unit" class="block text-sm font-medium text-stone-700">Unit</label>
                         <select name="unit" id="unit">
-                            <option value="piece" @selected(old('unit') === 'piece')>piece</option>
-                            <option value="pack" @selected(old('unit') === 'pack')>pack</option>
-                            <option value="bottle" @selected(old('unit') === 'bottle')>bottle</option>
-                            <option value="sachet" @selected(old('unit') === 'sachet')>sachet</option>
-                            <option value="can" @selected(old('unit') === 'can')>can</option>
-                            <option value="cup" @selected(old('unit') === 'cup')>cup</option>
-                            <option value="pouch" @selected(old('unit') === 'pouch')>pouch</option>
-                            <option value="bar" @selected(old('unit') === 'bar')>bar</option>
+                            @foreach ($units as $unit)
+                                <option value="{{$unit}}" @selected(old('unit') === $unit)>{{$unit}}</option>
+                            @endforeach
                         </select>
                         <div class="create-error">
                             @error('unit', 'storeBag')
@@ -92,7 +82,7 @@
 
                     <div>
                         <label for="quantity" class="block text-sm font-medium text-stone-700">Quantity</label>
-                        <input id="quantity" value="{{ old('quantity') }}" type="text" name="quantity" placeholder="0" class="mt-2 block w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                        <input id="quantity" min="0" step="1" value="{{ old('quantity') }}" type="number" name="quantity" placeholder="0" class="mt-2 block w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
                         <div class="create-error">
                             @error('quantity', 'storeBag')
                                 <span class="text-red-600">{{ $message }}</span>
@@ -109,7 +99,7 @@
                         <label for="selling-price" class="block text-sm font-medium text-stone-700">Selling price</label>
                         <div class="relative mt-2">
                             <span class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-sm text-stone-400">&#8369;</span>
-                            <input id="selling-price" value="{{ old('selling_price') }}" type="text" name="selling_price" placeholder="0.00" class="block w-full rounded-lg border border-stone-300 bg-white py-2.5 pr-3 pl-7 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                            <input id="selling-price" min="0" step=".01" value="{{ old('selling_price') }}" type="number" name="selling_price" placeholder="0.00" class="block w-full rounded-lg border border-stone-300 bg-white py-2.5 pr-3 pl-7 text-sm text-stone-800 placeholder:text-stone-400 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
                         </div>
                         <div class="create-error">
                             @error('selling_price', 'storeBag')

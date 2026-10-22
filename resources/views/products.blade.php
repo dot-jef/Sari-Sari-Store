@@ -32,14 +32,9 @@
                         <label for="product-category" class="sr-only">Filter by category</label>
                         <select id="product-category" name="category" class="block w-44 shrink-0 appearance-none rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-700 transition focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
                             <option value="">All categories</option>
-                            <option value="Beverages" @selected(request('category') === 'Beverages')>Beverages</option>
-                            <option value="Canned Goods" @selected(request('category') === 'Canned Goods')>Canned Goods</option>
-                            <option value="Frozen Food" @selected(request('category') === 'Frozen Food')>Frozen Food</option>
-                            <option value="Household" @selected(request('category') === 'Household')>Household</option>
-                            <option value="Instant Food" @selected(request('category') === 'Instant Food')>Instant Food</option>
-                            <option value="Pantry" @selected(request('category') === 'Pantry')>Pantry</option>
-                            <option value="Personal Care" @selected(request('category') === 'Personal Care')>Personal Care</option>
-                            <option value="Snack" @selected(request('category') === 'Snack')>Snack</option>
+                            @foreach ($categories as $category)
+                                <option value="{{$category}}" @selected(request('category') === $category)>{{$category}}</option>
+                            @endforeach
                         </select>
                         <label for="product-quantity" class="sr-only">Filter by quantity</label>
                         <select id="product-quantity" name="quantity" class="block w-44 shrink-0 appearance-none rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-700 transition focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
