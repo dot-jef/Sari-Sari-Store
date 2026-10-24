@@ -68,7 +68,7 @@ class ProductController extends Controller
     public function store(Request $request) {
 
         $validated = $request->validateWithBag('storeBag', [
-            'product_name' => 'required|string|min:3|max:50',
+            'product_name' => 'required|string|min:3|max:50|unique:products,product_name',
             'category' => ['required', 'string', Rule::in($this->categories)],
             'unit' => ['required', 'string', Rule::in($this->units)],
             'quantity' => 'required|integer|min:0',
@@ -86,7 +86,12 @@ class ProductController extends Controller
         $targetProduct = Product::findorFail($id);
 
         $validated = $request->validateWithBag('updateBag', [
-            'product_name' => 'required|string|min:3|max:50',
+            'product_name' => [
+                'required',
+                'string',
+                'min:3',
+                'max:50',
+                Rule::unique('products')->ignore($id)],
             'category' => ['required', 'string', Rule::in($this->categories)],
             'unit' => ['required', 'string', Rule::in($this->units)],
             'quantity' => 'required|integer|min:0',
