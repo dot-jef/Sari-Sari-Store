@@ -109,6 +109,7 @@ class ProductFactory extends Factory
         }
 
         $randomItem = fake()->randomElement($masterList);
+
         return [
             'product_name' => $randomItem['name'],
             'category' => $randomItem['category'],
