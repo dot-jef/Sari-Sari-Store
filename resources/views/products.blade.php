@@ -23,6 +23,9 @@
                     <button type="button" id="add-product-btn" class="inline-flex shrink-0 items-center gap-2 rounded-lg bg-stone-800 px-3.5 py-2.5 text-sm font-medium text-stone-50 shadow-sm transition hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2">
                         Add product
                     </button>
+                    <a href="{{ route('products.restock') }}" id="restock-btn" class="inline-flex shrink-0 items-center gap-2 rounded-lg border border-stone-300 bg-white px-3.5 py-2.5 text-sm font-medium text-stone-700 shadow-sm transition hover:bg-stone-50 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2">
+                        Restock
+                    </a>
                 </div>
 
                 <div class="mt-5 flex items-end justify-between gap-4">
