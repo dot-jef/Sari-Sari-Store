@@ -28,26 +28,26 @@
                     </a>
                 </div>
 
-                <div class="mt-5 flex items-end justify-between gap-4">
-                    <form id="search-form" action="{{ route('products.index') }}" class="flex w-full max-w-2xl items-center gap-2">
+                <div class="mt-5">
+                    <form id="search-form" action="{{ route('products.index') }}" class="grid w-full gap-3 sm:grid-cols-2 xl:grid-cols-[minmax(0,1fr)_repeat(3,minmax(9rem,11rem))_auto]">
                         <label for="product-name-search" class="sr-only">Search products</label>
-                        <input id="product-name-search" name="q" type="search" value="{{ old('q', request('q')) }}" placeholder="Search products" class="block min-w-0 flex-1 rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 transition focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                        <input id="product-name-search" name="q" type="search" value="{{ old('q', request('q')) }}" placeholder="Search products" class="block min-w-0 rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 placeholder:text-stone-400 transition focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200 sm:col-span-2 xl:col-span-1">
                         <label for="product-category" class="sr-only">Filter by category</label>
-                        <select id="product-category" name="category" class="block w-44 shrink-0 appearance-none rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-700 transition focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                        <select id="product-category" name="category" class="block w-full min-w-0 appearance-none rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-700 transition focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
                             <option value="">All categories</option>
                             @foreach ($categories as $category)
                                 <option value="{{$category}}" @selected(request('category') === $category)>{{$category}}</option>
                             @endforeach
                         </select>
                         <label for="product-quantity" class="sr-only">Filter by quantity</label>
-                        <select id="product-quantity" name="quantity" class="block w-44 shrink-0 appearance-none rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-700 transition focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                        <select id="product-quantity" name="quantity" class="block w-full min-w-0 appearance-none rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-700 transition focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
                             <option value="">All Products</option>
                             <option value="In Stock" @selected(request('quantity') === "In Stock")>In Stock</option>
                             <option value="Low Stock" @selected(request('quantity') === "Low Stock")>Low Stock</option>
                             <option value="Out of Stock" @selected(request('quantity') === "Out of Stock")>Out of Stock</option>
                         </select>
                         <label for="order-by" class="sr-only">Order By</label>
-                        <select id="order-by" name="order_by" class="block w-44 shrink-0 appearance-none rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-700 transition focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
+                        <select id="order-by" name="order_by" class="block w-full min-w-0 appearance-none rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-700 transition focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
                             <option value="">Newest</option>
                             <option value="Name ASC" @selected(request('order_by') === "Name ASC")>Name: A-Z</option>
                             <option value="Name DESC" @selected(request('order_by') === "Name DESC")>Name: Z-A</option>
@@ -56,7 +56,7 @@
                             <option value="Quantity ASC" @selected(request('order_by') === "Quantity ASC")>Quantity: low-high</option>
                             <option value="Quantity DESC" @selected(request('order_by') === "Quantity DESC")>Quantity: high-low</option>
                         </select>
-                        <button type="submit" class="inline-flex shrink-0 items-center rounded-lg bg-stone-800 px-3.5 py-2.5 text-sm font-medium text-stone-50 shadow-sm transition hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2">
+                        <button type="submit" class="inline-flex w-full items-center justify-center rounded-lg bg-stone-800 px-3.5 py-2.5 text-sm font-medium text-stone-50 shadow-sm transition hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2 sm:w-auto">
                             Search
                         </button>
                     </form>
@@ -107,8 +107,10 @@
 
             @include('deleteModal')
 
-            <div class="flex items-center justify-between border-t border-stone-100 px-5 py-3.5 text-xs text-stone-500 sm:px-6">
-                {{ $products->links() }}
+            <div class="flex min-w-0 flex-wrap items-center justify-between gap-3 border-t border-stone-100 px-5 py-3.5 text-xs text-stone-500 sm:px-6">
+                <div class="min-w-0 max-w-full overflow-x-auto">
+                    {{ $products->links() }}
+                </div>
             </div>
         </div>
     </section>

@@ -44,7 +44,7 @@
 
                     <div>
                         <label for="category" class="block text-sm font-medium text-stone-700">Category</label>
-                        <select id="category" name="category">
+                        <select id="category" name="category" class="mt-2 block w-full min-w-0 rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
                             @foreach ($categories as $category)
                                 <option value="{{$category}}" @selected(old('category') === $category)>{{$category}}</option>
                             @endforeach
@@ -63,7 +63,7 @@
 
                     <div>
                         <label for="unit" class="block text-sm font-medium text-stone-700">Unit</label>
-                        <select name="unit" id="unit">
+                        <select name="unit" id="unit" class="mt-2 block w-full min-w-0 rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-800 focus:border-stone-500 focus:outline-none focus:ring-2 focus:ring-stone-200">
                             @foreach ($units as $unit)
                                 <option value="{{$unit}}" @selected(old('unit') === $unit)>{{$unit}}</option>
                             @endforeach

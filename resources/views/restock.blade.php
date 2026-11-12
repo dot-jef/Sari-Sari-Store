@@ -5,7 +5,7 @@
     <header class="flex flex-wrap items-start justify-between gap-4 border-b border-stone-200 pb-6">
         <div>
             <p class="text-sm text-stone-500">Inventory</p>
-            <h1 class="mt-1 text-2xl font-semibold tracking-tight text-stone-900 sm:text-3xl">Restock product</h1>
+            <h1 class="mt-1 text-2xl font-semibold tracking-tight text-stone-900 sm:text-3xl">Restock products</h1>
             <p class="mt-2 text-sm text-stone-500">Add inventory to an existing product.</p>
         </div>
     </header>
