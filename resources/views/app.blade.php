@@ -11,7 +11,7 @@
     <div class="min-h-screen lg:grid lg:grid-cols-[15.5rem_minmax(0,1fr)]">
         <aside class="border-b border-stone-200 bg-stone-50 px-4 py-5 lg:sticky lg:top-0 lg:h-screen lg:border-r lg:border-b-0 lg:px-5 lg:py-6">
             <div class="flex items-center justify-between lg:block">
-                <a href="#" class="inline-flex items-center gap-3">
+                <a href="{{ route('dashboard.index') }}" class="inline-flex items-center gap-3">
                     <span class="flex size-10 items-center justify-center rounded-xl bg-stone-800 text-sm font-semibold tracking-wide text-stone-50">OS</span>
                     <span>
                         <span class="block text-sm font-semibold tracking-tight text-stone-900">Owner's Store</span>
@@ -21,10 +21,18 @@
             </div>
 
             <nav class="mt-6 flex gap-2 overflow-x-auto pb-1 lg:flex-col lg:gap-1 lg:overflow-visible" aria-label="Primary navigation">
-                <a href="{{ route('dashboard.index') }}" aria-current="page" class="inline-flex shrink-0 items-center gap-3 rounded-lg bg-stone-200 px-3 py-2.5 text-sm font-medium text-stone-900">
+                <a href="{{ route('dashboard.index') }}" @class([
+                    'inline-flex shrink-0 items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium',
+                    'bg-stone-200 text-stone-900' => request()->routeIs('dashboard.index'),
+                    'text-stone-600 transition hover:bg-stone-100 hover:text-stone-900' => ! request()->routeIs('dashboard.index'),
+                ]) @if (request()->routeIs('dashboard.index')) aria-current="page" @endif>
                     Dashboard
                 </a>
-                <a href="{{ route('products.index') }}" class="inline-flex shrink-0 items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-stone-600 transition hover:bg-stone-100 hover:text-stone-900">
+                <a href="{{ route('products.index') }}" @class([
+                    'inline-flex shrink-0 items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium',
+                    'bg-stone-200 text-stone-900' => request()->routeIs('products.*'),
+                    'text-stone-600 transition hover:bg-stone-100 hover:text-stone-900' => ! request()->routeIs('products.*'),
+                ]) @if (request()->routeIs('products.*')) aria-current="page" @endif>
                     Products
                 </a>
             </nav>
